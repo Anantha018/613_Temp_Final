@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClassNest Dashboard</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'classnest_Base/css/dashboard_styles.css' %}">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="logo">
+        <img src="{% static 'classnest_Base/img/app_icon.png' %}" alt="Logo Icon" class="logo-icon">
+        ClassNest
+      </div>
+      
+      <nav class="nav-links">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'courses' %}">Courses</a>
+        <a href="{% url 'discussions' %}" id="discussionsLink"><i class="fas fa-comments"></i> Discussions</a>
+        {% if is_instructor %}
+          <a href="{% url 'create-course' %}" class="create-course-btn">
+            <i class="icon-plus"></i> Create Course
+          </a>
+        {% endif %}
+        <a href="#">AI Quiz Generator</a>
+        <a href="{% url 'inbox' %}" id="inboxLink"><i class="fas fa-inbox"></i> Inbox</a>
+        <a href="#">Settings</a>
+        {% comment %} <a href="{% url 'password_change' %}">Change Password</a> {% endcomment %}
+        <span class="user-info">{{ request.user.username }}</span>
+        <!-- Logout Form -->
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="logout-btn">Logout</button>
+        </form>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Container -->
+  <div class="dashboard-container">
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+      <h1 class="title">Welcome, {{ request.user.username }}!</h1>
+      {% if is_instructor %}
+        <p class="subtitle">Here are the courses you have created.</p>
+      {% else %}
+        <p class="subtitle">Here's an overview of your enrolled courses.</p>
+      {% endif %}
+    </div>
+
+    <!-- Courses Section -->
+    <div class="courses-section">
+      {% if is_instructor %}
+        <h2 class="section-title">Your Created Courses</h2>
+        {% if instructed_courses %}
+          <div class="courses-grid">
+            {% for course in instructed_courses %}
+              <div class="course-card">
+                <img src="{{ course.thumbnail.url }}" alt="{{ course.title }} Thumbnail" class="course-thumbnail">
+                <div class="course-details">
+                  <h3>{{ course.title }}</h3>
+                  <a href="{% url 'course-detail' course.id %}" class="course-link">View Course</a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="empty-message">You haven't created any courses yet.</p>
+        {% endif %}
+      {% else %}
+        <h2 class="section-title">Enrolled Courses</h2>
+        {% if enrolled_courses %}
+          <div class="courses-grid">
+            {% for course in enrolled_courses %}
+              <div class="course-card">
+                <img src="{{ course.thumbnail.url }}" alt="{{ course.title }} Thumbnail" class="course-thumbnail">
+                <div class="course-details">
+                  <h3>{{ course.title }}</h3>
+                  <p class="course-instructor">Instructor: {{ course.instructor.username }}</p>
+                  <a href="{% url 'course-detail' course.id %}" class="course-link">View Course</a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="empty-message">You are not enrolled in any courses yet.</p>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+  <script src="{% static 'classnest_Base/js/dashboard_script.js' %}"></script>
+</body>
+</html>
