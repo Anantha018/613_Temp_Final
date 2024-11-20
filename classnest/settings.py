@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'classnest_Base'
+    'classnest_Base',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -40,6 +41,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-40160.up.railway.app',
+]
+
+
+CORS_ALLOWED_ORIGINS = [
+    'https://web-production-40160.up.railway.app',
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
