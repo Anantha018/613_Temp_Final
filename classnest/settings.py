@@ -45,12 +45,12 @@ MIDDLEWARE = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-40160.up.railway.app',
+    'https://classnest.up.railway.app'
 ]
 
 
 CORS_ALLOWED_ORIGINS = [
-    'https://web-production-40160.up.railway.app',
+    'https://classnest.up.railway.app'
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
