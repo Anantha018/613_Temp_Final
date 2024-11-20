@@ -8,7 +8,7 @@ class Course(models.Model):
     description = models.TextField()
     instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='instructed_courses')
     students = models.ManyToManyField(User, related_name='enrolled_courses', blank=True)
-    thumbnail = models.ImageField(upload_to='course_thumbnails/', blank=True, null=True)  # Add this line
+    thumbnail = models.ImageField(upload_to='course_thumbnails/', blank=True, null=True)
 
     def __str__(self):
         return self.title
