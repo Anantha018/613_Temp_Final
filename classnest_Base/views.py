@@ -283,10 +283,6 @@ def profile_view(request):
 
 @login_required
 def discussions_view(request):
-
-    # Debugging: Print user and their groups
-    print(f"User: {request.user}")
-    print(f"User groups: {request.user.groups.all()}")
     # Fetch all discussions, ordered by creation date
     discussions = Discussion.objects.all().order_by('-created_at')
     
@@ -294,7 +290,7 @@ def discussions_view(request):
     courses = Course.objects.values_list('title', flat=True).distinct()
 
     # Check if the user is an instructor
-    is_instructor = request.user.groups.filter(name='Instructors').exists()
+    is_instructor = request.user.groups.filter(name='Instructor').exists()
 
     # Render the discussions page
     return render(request, 'classnest_Base/discussions.html', {
@@ -354,6 +350,9 @@ def inbox_view(request):
 
 @login_required
 def create_inbox_view(request):
+    # Check if the user is in the 'Instructor' group
+    is_instructor = request.user.groups.filter(name='Instructor').exists()
+    
     if request.method == "POST":
         form = InboxForm(request.POST)
         if form.is_valid():
@@ -366,7 +365,7 @@ def create_inbox_view(request):
     else:
         form = CourseForm()  # Initialize an empty form for GET requests
 
-    return render(request, 'classnest_Base/create_inbox.html', {'form': form})
+    return render(request, 'classnest_Base/create_inbox.html', {'form': form, 'is_instructor': is_instructor})
 
 @login_required
 def inbox_detail_view(request, inbox_id):

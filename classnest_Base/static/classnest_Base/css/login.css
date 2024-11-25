@@ -85,13 +85,16 @@ body {
 }
 
 .logo {
-    display: flex;
+    display: flex; /* Keep the flexbox alignment from your current CSS */
     align-items: center;
+    text-decoration: none; /* Remove default underline for links */
+    color: inherit; /* Keep text color consistent */
 }
   
-.logo img {
-width: 24px; /* Adjust the size as needed */
-height: 24px; /* Adjust the size as needed */
-margin-right: 8px; /* Space between the icon and text */
-}
   
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 10px;
+}

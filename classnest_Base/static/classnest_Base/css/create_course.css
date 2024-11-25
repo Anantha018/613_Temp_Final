@@ -88,7 +88,7 @@
   
   .cancel-btn,
   .create-course-btn {
-    padding: 10px 20px;
+    padding: 3px 10px;
     border-radius: 6px;
     font-weight: bold;
     border: none;
@@ -106,7 +106,7 @@
   }
   
   .create-course-btn {
-    background-color: #28a745;
+    background-color: #2dbd4e;
     color: #fff;
   }
   

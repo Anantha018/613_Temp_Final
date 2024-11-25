@@ -8,21 +8,7 @@ body {
   line-height: 1.6;
 }
 
-/* Navbar */
-.navbar {
-  background-color: #6c63ff;
-  color: white;
-  padding: 16px;
-  text-align: center;
-}
 
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .logo {
   display: flex;
@@ -37,21 +23,6 @@ body {
   margin-right: 10px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #ddd;
-}
 
 /* Module Details */
 .module-detail-container {
@@ -151,7 +122,7 @@ h1, h2, h3 {
 .cancel-btn {
   display: inline-block;
   padding: 6px 15px;
-  background-color: #e63946; /* Red color */
+  background-color: #333; /* Red color */
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -161,7 +132,7 @@ h1, h2, h3 {
 }
 
 .cancel-btn:hover {
-  background-color: #d62828; /* Darker red on hover */
+  background-color: #161515; /* Darker red on hover */
 }
 
 /* Content Section */
