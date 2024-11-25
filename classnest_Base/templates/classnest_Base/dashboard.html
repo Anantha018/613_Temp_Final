@@ -42,10 +42,9 @@
               <div class="course-card">
                 <img src="{{ course.thumbnail.url }}" alt="{{ course.title }} Thumbnail" class="course-thumbnail">
                 <div class="course-details">
-                  <h3>{{ course.title }}</h3>
+                  <a href="{% url 'course-detail' course.id %}" class="course-link"><h3>{{ course.title }}</h3></a>
                   <p class="course-instructor">Instructor: {{ course.instructor.username }}</p>
-                  <a href="{% url 'course-detail' course.id %}" class="course-link">View Course</a>
-                </div>
+                  </div>
               </div>
             {% endfor %}
           </div>
