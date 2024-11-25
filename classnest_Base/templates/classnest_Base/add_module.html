@@ -1,46 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Module - {{ course.title }} - ClassNest</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'classnest_Base/css/dashboard_styles.css' %}">
-  <link rel="stylesheet" href="{% static 'classnest_Base/css/add_module.css' %}">
-</head>
-<body>
-  <!-- Navbar -->
- <!-- Navbar -->
- <header class="navbar">
-  <div class="navbar-container">
-    <div class="logo">
-      <img src="{% static 'classnest_Base/img/app_icon.png' %}" alt="Logo Icon" class="logo-icon">
-      ClassNest
-    </div>
-    
-    <nav class="nav-links">
-      <a href="{% url 'dashboard' %}">Dashboard</a>
-      <a href="{% url 'courses' %}">Courses</a>
-      <a href="{% url 'discussions' %}" id="discussionsLink"><i class="fas fa-comments"></i> Discussions</a>
-      {% if is_instructor %}
-        <a href="{% url 'create-course' %}" class="create-course-btn">
-          <i class="icon-plus"></i> Create Course
-        </a>
-      {% endif %}
-      <a href="#">AI Quiz Generator</a>
-      <a href="{% url 'inbox' %}" id="inboxLink"><i class="fas fa-inbox"></i> Inbox</a>
-      <a href="#">Settings</a>
-      {% comment %} <a href="{% url 'password_change' %}">Change Password</a> {% endcomment %}
-      <span class="user-info">{{ request.user.username }}</span>
-      <!-- Logout Form -->
-      <form action="{% url 'logout' %}" method="post" style="display: inline;">
-        {% csrf_token %}
-        <button type="submit" class="logout-btn">Logout</button>
-      </form>
-    </nav>
-  </div>
-</header>
+{% extends "classnest_Base/base_generic.html" %}
+{% load static %}
 
+{% block title %}Add Module - {{ course.title }}{% endblock %}
+
+{% block content %}
   <!-- Main Content -->
   <div class="add-module-container">
     <h1>Add Module to {{ course.title }}</h1>
@@ -72,5 +35,5 @@
 
 
   <script src="{% static 'classnest_Base/js/add_module.js' %}"></script>
-</body>
-</html>
+
+{% endblock %}

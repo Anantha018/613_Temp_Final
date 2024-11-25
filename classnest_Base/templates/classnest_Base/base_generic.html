@@ -1,39 +1,73 @@
-{% load custom_tags %}
 {% load static %}
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}ClassNest{% endblock %}</title>
+  <title>{% block title %} ClassNest {% endblock %}</title>
   
   <link rel="stylesheet" href="{% static 'classnest_Base/css/dashboard_styles.css' %}">
-  <link rel="stylesheet" href="{% static 'classnest_Base/css/login.css' %}">
-  <link rel="stylesheet" href="{% static 'classnest_Base/css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'classnest_Base/css/create_course.css' %}">
+  <link rel="stylesheet" href="{% static 'classnest_Base/css/course_detail.css' %}">
+  <link rel="stylesheet" href="{% static 'classnest_Base/css/modal_styles.css' %}">
+  <link rel="stylesheet" href="{% static 'classnest_Base/css/courses.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'classnest_Base/css/discussion.css' %}">
+  <link rel="stylesheet" href="{% static 'classnest_Base/css/module_detail.css' %}">
+  <link rel="stylesheet" href="{% static 'classnest_Base/css/add_module.css' %}">
   <link rel="stylesheet" href="{% static 'classnest_Base/css/password_change.css' %}">
   <link rel="stylesheet" href="{% static 'classnest_Base/css/password_change_done.css' %}">
+  
+
 </head>
 <body>
-    <header class="navbar">
-        <div class="navbar-container">
-          <div class="logo">
-            <!-- Add the image icon beside the "ClassNest" text -->
-            <img src="{% static 'classnest_Base/img/app_icon.png' %}" alt="Logo Icon" class="logo-icon">
-            ClassNest
-          </div>
-          <nav class="nav-links">
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
-          </nav>
-        </div>
-      </header>
-     
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-container">
+
+      <a href="{% url 'dashboard' %}" class="logo">
+        <img src="{% static 'classnest_Base/img/app_icon.png' %}" alt="Logo Icon" class="logo-icon">
+        ClassNest
+      </a>      
+      
+      <nav class="nav-links">
+        <a href="{% url 'dashboard' %}">
+          <i class="fa-solid fa-house"></i>&nbsp;Home
+        </a>        
+        <a href="{% url 'courses' %}">
+          <i class="fa-solid fa-magnifying-glass"></i>&nbsp;Explore
+        </a>
+
+        <a href="https://aiquizgenerator-production.up.railway.app/" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-robot"></i>&nbsp;Quiz Generator
+        </a>
+
+        {% if is_instructor %}
+            <a href="{% url 'create-course' %}" class="create-course-btn">
+              <i class="fa-solid fa-plus"></i>&nbsp;Course
+            </a>
+        {% endif %}
+
+        <a href="{% url 'discussions' %}" id="discussionsLink"><i class="fas fa-comments"></i> Discussions</a>
+        <a href="{% url 'inbox' %}" id="inboxLink"><i class="fas fa-inbox"></i> Inbox </a>
+
+        <a href="{% url 'password_change'%}">
+          <i class="fa-solid fa-gear"></i> Settings
+        </a>
+
+        <!-- Logout Form -->
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</button>
+        </form>
+
+      </nav>
+    </div>
+  </header>
 
   <main>
-    {% block content %}{% endblock %}
+    {%block content%}{% endblock %}
   </main>
 
-  <script src="{% static 'classnest_Base/js/dashboard_script.js' %}"></script>
 </body>
 </html>

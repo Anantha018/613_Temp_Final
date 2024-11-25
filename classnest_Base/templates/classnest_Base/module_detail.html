@@ -1,35 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ module.title }} - ClassNest</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'classnest_Base/css/dashboard_styles.css' %}">
-  <link rel="stylesheet" href="{% static 'classnest_Base/css/module_detail.css' %}">
-  <style>
-    
-  </style>
-</head>
-<body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="navbar-container">
-      <div class="logo">
-        <img src="{% static 'classnest_Base/img/app_icon.png' %}" alt="Logo Icon" class="logo-icon">
-        ClassNest
-      </div>
-      <nav class="nav-links">
-        <a href="{% url 'dashboard' %}">Dashboard</a>
-        <a href="{% url 'courses' %}">Courses</a>
-        <span class="user-info">{{ request.user.username }}</span>
-        <form action="{% url 'logout' %}" method="post" style="display: inline;">
-          {% csrf_token %}
-          <button type="submit" class="logout-btn">Logout</button>
-        </form>
-      </nav>
-    </div>
-  </header>
+{% extends "classnest_Base/base_generic.html" %}
+{% load static %}
+{% block title %} {{ module.title }} {% endblock %}
+
+{% block content %}
 
   <!-- Module Details -->
   <div class="module-detail-container">
@@ -173,8 +146,4 @@
   </div>
   </div>
   
-  
-  <script src="{% static 'classnest_Base/js/module_detail.js' %}"></script>
-  
-</body>
-</html>
+{% endblock %}
