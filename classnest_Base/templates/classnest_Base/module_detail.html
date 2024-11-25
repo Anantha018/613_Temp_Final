@@ -17,7 +17,8 @@
           <div class="delete-module-container">
             <form action="{% url 'delete-module' module.id %}" method="post">
               {% csrf_token %}
-              <button type="submit" class="delete-module-btn">Delete Module</button>
+              <button type="submit" class="delete-module-btn">
+                <i class="fa-solid fa-trash-can"></i>&nbsp; Delete Module</button>
             </form>
           </div>
           {% endif %}
@@ -62,12 +63,14 @@
             <li>
               <div class="item-title">{{ recording.title }}</div>
               <div class="item-actions">
-                <a href="{{ recording.url }}" target="_blank">Link</a>
+                <a href="{{ recording.url }}" target="_blank">
+                  <i class="fa-solid fa-link"></i>&nbsp;</a>
                 {% if request.user == module.course.instructor %}
                 <!-- Delete Recording Form -->
                   <form action="{% url 'delete-recording' recording.id %}" method="post" style="display: inline;">
                     {% csrf_token %}
-                    <button type="submit" class="delete-recording-btn">Delete</button>
+                    <button type="submit" class="delete-recording-btn">
+                      <i class="fa-solid fa-trash"></i>&nbsp;</button>
                   </form>
                 {% endif %}
               </div>
@@ -86,13 +89,15 @@
             <li>
               <div class="item-title">{{ assignment.title }}</div>
               <div class="item-actions">
-                <a href="{{ assignment.file.url }}" download>Download</a>
+                <a href="{{ assignment.file.url }}" download>
+                  <i class="fa-solid fa-download"></i>&nbsp;</a>
                 {% if request.user == module.course.instructor %}
                   <!-- Assignment Delete Button -->
                   <!-- Delete Assignment Form -->
                   <form action="{% url 'delete-assignment' assignment.id %}" method="post" style="display: inline;">
                     {% csrf_token %}
-                    <button type="submit" class="delete-assignment-btn">Delete</button>
+                    <button type="submit" class="delete-assignment-btn">
+                      <i class="fa-solid fa-trash"></i>&nbsp;</button>
                   </form>
                 {% endif %}
               </div>
@@ -111,13 +116,15 @@
             <li>
               <div class="item-title">{{ material.title }}</div>
               <div class="item-actions">
-                <a href="{{ material.file.url }}" download>Download</a>
+                <a href="{{ material.file.url }}" download>
+                  <i class="fa-solid fa-download"></i>&nbsp;</a>
                 {% if request.user == module.course.instructor %}
                   <!-- Form with Confirmation for Deletion -->
                   <!-- Delete Material Form -->
                 <form action="{% url 'delete-material' material.id %}" method="post" style="display: inline;">
                   {% csrf_token %}
-                  <button type="submit" class="delete-material-btn">Delete</button>
+                  <button type="submit" class="delete-material-btn">
+                    <i class="fa-solid fa-trash"></i>&nbsp;</button>
                 </form>
 
                 {% endif %}
