@@ -11,6 +11,13 @@
                 {{ form.username }}
                 <small class="form-hint">{{ form.username.help_text }}</small>
             </div>
+            
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                <small class="form-hint">Enter a valid email address.</small>
+            </div>
+            
             <div class="form-group">
                 {{ form.password1.label_tag }}
                 {{ form.password1 }}

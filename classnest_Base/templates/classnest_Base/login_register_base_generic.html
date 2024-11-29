@@ -15,10 +15,11 @@
 <body>
     <header class="navbar">
         <div class="navbar-container">
-          <div class="logo">
+          <a href="{% url 'login' %}" class="logo">
             <img src="{% static 'classnest_Base/img/app_icon.png' %}" alt="Logo Icon" class="logo-icon">
             ClassNest
-          </div>
+          </a> 
+          
           <nav class="nav-links">
             <a href="{% url 'login' %}">Login</a>
             <a href="{% url 'register' %}">Register</a>

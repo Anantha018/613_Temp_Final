@@ -23,7 +23,6 @@ def register(request):
         if form.is_valid():
             user = form.save()
             user_type = form.cleaned_data.get('user_type')
-            # Assign the user to the appropriate group
             if user_type == 'student':
                 group = Group.objects.get(name='Student')
             elif user_type == 'instructor':
@@ -35,7 +34,7 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'classnest_Base/register.html', {'form': form})
-    
+
 @login_required
 def dashboard_view(request):
     # Debugging: Print user and their groups
