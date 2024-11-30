@@ -31,31 +31,29 @@
       </a>      
       
       <nav class="nav-links">
-        <a href="{% url 'dashboard' %}">
+        <a href="{% url 'dashboard' %}" class="home-button">
           <i class="fa-solid fa-house"></i>&nbsp;Home
         </a>        
-        <a href="{% url 'courses' %}">
+        <a href="{% url 'courses' %}" class="explore-button">
           <i class="fa-solid fa-magnifying-glass"></i>&nbsp;Explore
         </a>
 
-        <a href="https://aiquizgenerator-production.up.railway.app/" target="_blank" rel="noopener noreferrer">
+        <a href="https://aiquizgenerator-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="quiz-button">
           <i class="fa-solid fa-robot"></i>&nbsp;Quiz Generator
         </a>
 
         {% if is_instructor %}
-            <a href="{% url 'create-course' %}" class="create-course-btn">
+            <a href="{% url 'create-course' %}" class="create-course-btn-navbar">
               <i class="fa-solid fa-plus"></i>&nbsp;Course
             </a>
         {% endif %}
 
-        <a href="{% url 'discussions' %}" id="discussionsLink"><i class="fas fa-comments"></i> Discussions</a>
-        <a href="{% url 'inbox' %}" id="inboxLink"><i class="fas fa-inbox"></i> Inbox </a>
+        <a href="{% url 'discussions' %}" id="discussionsLink" class="discussions-button"><i class="fas fa-comments"></i> Discussions</a>
+        <a href="{% url 'inbox' %}" id="inboxLink" class="inbox-button"><i class="fas fa-inbox"></i> Inbox </a>
 
-        <a href="{% url 'password_change'%}">
+        <a href="{% url 'profile'%}" class="settings-button">
           <i class="fa-solid fa-gear"></i> Settings
         </a>
-
-        <a href="{% url 'profile' %}">Profile</a>
 
         <!-- Logout Form -->
         <form action="{% url 'logout' %}" method="post" style="display: inline;">

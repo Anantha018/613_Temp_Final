@@ -8,7 +8,7 @@
   <div class="dashboard-container">
     <!-- Welcome Section -->
     <div class="welcome-section">
-      <h1 class="title">Welcome, {{ request.user.username }}!</h1>
+      <h1 class="title"><i class="fa-solid fa-door-open"></i>&nbsp;Welcome, {{ request.user.username }}!</h1>
       {% if is_instructor %}
         <p class="subtitle">Here are the courses you have created.</p>
       {% else %}

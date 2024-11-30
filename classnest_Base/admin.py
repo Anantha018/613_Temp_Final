@@ -10,3 +10,8 @@ admin.site.register(Module)
 admin.site.register(Recording)
 admin.site.register(Assignment)
 admin.site.register(Material)
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'github_link', 'linkedin_link')

@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.contrib.auth.models import Group
 from django.contrib import messages
+from django.contrib.auth.models import User
+from classnest_Base.models import Profile
 
 # Create groups if they don’t already exist
 def create_user_groups():
@@ -278,7 +280,40 @@ def dashboard_view(request):
 
 @login_required
 def profile_view(request):
-    return render(request, 'classnest_Base/profile.html')
+    # Ensure the profile exists for the user
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=request.user)
+
+    if request.method == "POST":
+        new_email = request.POST.get("email")
+        github_link = request.POST.get("github")
+        linkedin_link = request.POST.get("linkedin")
+
+        if new_email:
+            if new_email != request.user.email:
+                if User.objects.filter(email=new_email).exclude(id=request.user.id).exists():
+                    messages.error(request, "This email address is already in use.")
+                else:
+                    request.user.email = new_email
+                    request.user.save()
+                    messages.success(request, "Your email has been updated successfully!")
+            else:
+                messages.info(request, "This is already your email.")
+        
+        # Update GitHub and LinkedIn links
+        profile.github_link = github_link
+        profile.linkedin_link = linkedin_link
+        profile.save()
+        messages.success(request, "Social links updated successfully!")
+
+    return render(request, 'classnest_Base/profile.html', {
+        'current_email': request.user.email,
+        'github_link': profile.github_link,
+        'linkedin_link': profile.linkedin_link,
+    })
+
 
 @login_required
 def discussions_view(request):

@@ -28,7 +28,7 @@
   }
   
   .submit-module-btn {
-    background-color: #4f46e5;
+    background-color: #27b950;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -39,7 +39,7 @@
   }
   
   .submit-module-btn:hover {
-    background-color: #3b37cc;
+    background-color: #37cc52;
   }
   
     /* Styling for Modules Section */

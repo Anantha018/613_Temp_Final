@@ -6,30 +6,31 @@
 {% block content %}
   <!-- Main Content -->
   <div class="add-module-container">
-    <h1>Add Module to {{ course.title }}</h1>
+    <h1><i class="fa-solid fa-folder-plus"></i>&nbsp;Add Module to {{ course.title }}</h1>
     <form action="{% url 'save-module' course.id %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       
       <label for="module-title">Module Title:</label>
-      <input type="text" id="module-title" name="module_title" required>
+      <input type="text" id="module-title" name="module_title" required>&nbsp;
 
       <h2>Add Recordings</h2>
       <label for="recording-title">Recording Title:</label>
       <input type="text" id="recording-title" name="recording_title" required>
       <label for="recording-url">Recording URL:</label>
-      <input type="text" id="recording-url" name="recordings" multiple>
+      <input type="text" id="recording-url" name="recordings" multiple>&nbsp;
       
       <h2>Add Assignments</h2>
       <label for="assignment-title">Assignment Title:</label>
       <input type="text" id="assignment-title" name="assignment_title" required>
-      <input type="file" name="assignments" multiple>
+      <input type="file" name="assignments" multiple>&nbsp;
 
       <h2>Add Materials</h2>
       <label for="material-title">Material Title:</label>
       <input type="text" id="material-title" name="material_title" required>
       <input type="file" name="materials" multiple>
 
-      <button type="submit" class="submit-module-btn">Save Module</button>
+      <button type="submit" class="submit-module-btn">
+        <i class="fa-solid fa-floppy-disk"></i>&nbsp;Save Module</button>
     </form>
   </div>
 
