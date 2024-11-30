@@ -86,31 +86,47 @@
     align-items: center;
   }
   
-  .cancel-btn,
-  .create-course-btn {
-    padding: 3px 10px;
-    border-radius: 6px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cancel-btn {
-    background-color: #ddd;
-    color: #333;
-  }
-  
-  .cancel-btn:hover {
-    background-color: #bbb;
-  }
-  
-  .create-course-btn {
-    background-color: #2dbd4e;
-    color: #fff;
-  }
-  
-  .create-course-btn:hover {
-    background-color: #37d36b;
-  }
+.cancel-btn-create-course {
+  display: inline-block;
+  padding: 10px 10px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+ 
+.cancel-btn:hover {
+  background-color: #161515; /* Darker red on hover */
+}
+
+.create-course-btn {
+  padding: 10px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn {
+  background-color: #ddd;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #bbb;
+}
+
+.create-course-btn {
+  background-color: #2dbd4e;
+  color: #fff;
+}
+
+.create-course-btn:hover {
+  background-color: #37d36b;
+}
   

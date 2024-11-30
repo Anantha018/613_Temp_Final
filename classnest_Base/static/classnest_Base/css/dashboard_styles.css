@@ -47,8 +47,33 @@ body {
   font-weight: bold;
 }
 
+.nav-button {
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.nav-button:hover {
+  transform: scale(1.1); /* Increase size by 10% */
+  background-color: #5a54e2; /* Consistent hover color */
+}
+
+
 .user-info {
   font-weight: bold;
+}
+
+.create-course-btn-navbar{
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #2dbd4e;
+  color: #fff;
+}
+
+.create-course-btn-navbar:hover {
+  background-color: #37d36b;
 }
 
 
@@ -208,7 +233,16 @@ body {
   font-size: 15px;
 }
 
-.logout-btn:hover {
-  background-color: #5a54e2;
-}
 
+.explore-button:hover,
+.home-button:hover,
+.quiz-button:hover,
+.discussions-button:hover,
+.inbox-button:hover,
+.settings-button:hover,
+.create-course-btn-navbar:hover,
+.logout-btn:hover {
+  border-radius: 4px;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}

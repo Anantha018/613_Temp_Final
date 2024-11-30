@@ -3,15 +3,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
   
-  body {
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
     color: #333;
     padding: 0;
     line-height: 1.6;
-  }
+}
 
 .profile-container {
     width: 100%;
@@ -23,42 +23,17 @@
     border-radius: 12px;
 }
 
-body.dark-mode .profile-container {
-    background-color: #1E1E1E;
-}
-
-/* Theme Toggle */
-.theme-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.theme-toggle h2 {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#theme-toggle-btn {
-    padding: 10px;
-    background-color: #4A90E2;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
 /* Profile sections */
 .profile-section {
     margin-bottom: 20px;
 }
 
-.profile-section h3 {
+.profile-heading {
     font-size: 20px;
     font-weight: bold;
     color: #b45f06;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .profile-section label {
@@ -78,15 +53,64 @@ body.dark-mode .profile-container {
 
 .save-btn {
     padding: 15px;
-    background-color: #4A90E2;
+    background-color: #61bb4b;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    font-weight: bold;
 }
 
 .save-btn:hover {
-    background-color: #0e3358;
+    background-color: #1f9416;
 }
 
+.messages-container {
+    margin: 20px 0;
+}
+  
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+  
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    text-align: center;
+}
+  
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    text-align: center;
+}
+  
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    text-align: center;
+}
+  
+.change-password-text {
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: #333;
+}
+
+.change-password-link {
+    color: #007bff; /* Bootstrap primary blue color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.change-password-link:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
+}

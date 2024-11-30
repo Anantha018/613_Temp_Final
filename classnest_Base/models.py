@@ -4,6 +4,7 @@ from django.db import models
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+
 class UserRegistrationForm(UserCreationForm):
     USER_TYPE_CHOICES = [
         ('student', 'Student'),
@@ -33,6 +34,7 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+
 class Profile(models.Model):
     USER_TYPE_CHOICES = (
         ('student', 'Student'),
@@ -41,9 +43,12 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES)
+    github_link = models.URLField(max_length=200, blank=True, null=True)
+    linkedin_link = models.URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return f"{self.user.username} - {self.user_type}"
+
 
 class Module(models.Model):
     title = models.CharField(max_length=255)
