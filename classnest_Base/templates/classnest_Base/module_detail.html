@@ -23,27 +23,27 @@
           </div>
           {% endif %}
         
-        <h3>Add Content</h3>
+        <h3><i class="fa-solid fa-circle-plus"></i>&nbsp;Add Content</h3>
         
         <form action="{% url 'add-recording' module.id %}" method="post">
           {% csrf_token %}
           <input type="text" name="recording_title" placeholder="Recording Title" required>
           <input type="url" name="recording_url" placeholder="Recording URL" required>
-          <button type="submit" class="add-btn">+</button>
+          <button type="submit" class="add-btn"><i class="fa-solid fa-upload"></i></button>
         </form>
 
         <form action="{% url 'add-assignment' module.id %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="text" name="assignment_title" placeholder="Assignment Title" required>
           <input type="file" name="assignment_file" required>
-          <button type="submit" class="add-btn">+</button>
+          <button type="submit" class="add-btn"><i class="fa-solid fa-upload"></i></button>
         </form>
 
         <form action="{% url 'add-material' module.id %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="text" name="material_title" placeholder="Material Title" required>
           <input type="file" name="material_file" required>
-          <button type="submit" class="add-btn">+</button>
+          <button type="submit" class="add-btn"><i class="fa-solid fa-upload"></i></button>
         </form>
       </div>
 
