@@ -6,7 +6,7 @@
 {% block content %}
   <main class="create-course-container">
     <div class="create-course-card">
-      <h2><i class="icon-course"></i> Create New Course</h2>
+      <h2> Create New Course</h2>
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
@@ -27,7 +27,7 @@
         </div>
         <div class="form-buttons">
           <button type="button" class="cancel-btn-create-course" onclick="redirectToCourses()">Cancel</button>
-          <button type="submit" class="create-course-btn">Create Course</button>
+          <button type="submit" class="create-course-btn"><i class="fa-solid fa-circle-plus"></i>&nbsp;Course</button>
         </div>
       </form>
       
