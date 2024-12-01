@@ -34,7 +34,6 @@
     object-fit: cover; /* Maintains aspect ratio and crops the excess */
     border-radius: 4px; /* Optional: adds rounded corners to the image */
 }
-
   
 .course-card:hover {
     transform: translateY(-5px);

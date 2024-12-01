@@ -1,0 +1,13 @@
+{% extends "classnest_Base/base_generic.html" %}
+{% block title %} Message Details {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ message.subject }}</h2>
+    <p><strong>From:</strong> {{ message.sender.username }}</p>
+    <p><strong>To:</strong> {{ message.receiver.username }}</p>
+    <p><strong>Sent:</strong> {{ message.timestamp }}</p>
+    <hr>
+    <p>{{ message.body }}</p>
+</div>
+{% endblock %}

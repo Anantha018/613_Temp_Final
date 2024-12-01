@@ -1,0 +1,92 @@
+/* Inbox Container Styling */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative; /* Enables positioning for child elements */
+}
+
+/* Inbox Header Styling */
+.inbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.inbox-header h2 {
+    font-size: 24px;
+    color: #4f46e5;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.inbox-header h2 i {
+    color: #4f46e5;
+}
+
+/* Compose Button Styling */
+.compose-btn {
+    background-color: #e5aa46;
+    color: white;
+    padding: 5px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.compose-btn:hover {
+    background-color: #cb812d;
+    transform: translateY(-2px);
+}
+
+.compose-btn:active {
+    background-color: #884c27;
+    transform: translateY(0);
+}
+
+/* Message List Styling */
+.message-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.message-list li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.message-list li.unread {
+    background-color: #f9f9ff;
+    border-left: 4px solid #4f46e5;
+}
+
+.message-list li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.message-list li a:hover {
+    text-decoration: underline;
+}
+
+.message-list li small {
+    color: #888;
+    font-size: 12px;
+    margin-left: 10px;
+}

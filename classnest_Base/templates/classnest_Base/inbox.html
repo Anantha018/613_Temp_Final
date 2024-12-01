@@ -1,39 +1,27 @@
 {% extends "classnest_Base/base_generic.html" %}
-{% load static %}
 {% block title %} Inbox {% endblock %}
 
 {% block content %}
+<div class="container">
+  <div class="inbox-header">
+    <h2><i class="fa-solid fa-envelope-open"></i>&nbsp;Inbox</h2>
+    <a href="{% url 'send-message' %}" class="compose-btn">
+      <i class="fa-solid fa-pencil"></i>&nbsp;Compose</a>
+  </div>
 
-  <main class="container">
-    <div class="discussions-header">
-      <h2><i class="fas fa-inbox"></i> Inbox</h2>
-      <a href="{% url 'create-inbox' %}" class="compose-btn">Compose</a>
-    </div>
-  
-    {% if inbox_messages %}
-        {% for message in inbox_messages %}
-          <div class="discussion-card">
-            <h3>{{ message.subject }}</h3>
-            <p>To: {{ message.to }}</p>
-            <p>Message : {{ message.message }}</p>
-            <p>{{ message.created_at|date:"M d, Y H:i" }}</p>
-            <div class="discussion-actions">
-              {% if message.id %}
-                <a href="{% url 'inbox-detail' inbox_id=message.id %}">View</a>
-                <form action="{% url 'delete-inbox' inbox_id=message.id %}" method="post" style="display:inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="delete-btn">Delete</button>
-                </form>
-              {% else %}
-                <p class="error">This message is invalid and cannot be viewed or deleted.</p>
-              {% endif %}
-            </div>
-          </div>
+  {% if messages %}
+    <ul class="message-list">
+        {% for message in messages %}
+            <li class="{% if not message.is_read %}unread{% endif %}">
+                <a href="{% url 'message-detail' message.id %}">
+                    <strong>{{ message.sender.username }}</strong>: {{ message.subject }}
+                    <small>{{ message.timestamp }}</small>
+                </a>
+            </li>
         {% endfor %}
-      </div>
-    {% else %}
-      <p class="no-messages">No messages found in your inbox.</p>
-    {% endif %}
-  </main>
-
+    </ul>
+  {% else %}
+    <p>No messages yet.</p>
+  {% endif %}
+</div>
 {% endblock %}

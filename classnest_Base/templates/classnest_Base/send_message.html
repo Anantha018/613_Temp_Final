@@ -1,0 +1,18 @@
+{% extends "classnest_Base/base_generic.html" %}
+{% block title %} Send Message {% endblock %}
+
+{% block content %}
+<div class="message-container">
+    <h2><i class="fa-solid fa-message"></i> Send a Message</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <div class="form-actions">
+            <a href="{% url 'inbox' %}" class="cancel-btn">Cancel</a>
+            <button type="submit" class="send-btn"><i class="fa-solid fa-paper-plane"></i>&nbsp;Send</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
