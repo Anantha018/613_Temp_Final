@@ -7,7 +7,14 @@
   <!-- Main Content -->
   <div class="course-detail-container">
     <div class="course-header">
-      <img src="{{ course.thumbnail.url }}" alt="{{ course.title }} Thumbnail" class="course-thumbnail-large">
+
+      {% if course.thumbnail %}
+        <img src="{{ course.thumbnail.url }}" alt="{{ course.title }} Thumbnail" class="course-thumbnail-large">
+      {% else %}
+        <img src="{% static 'classnest_Base/img/default-thumbnail.jpg' %}" alt="Default Thumbnail" class="course-thumbnail-large">
+      {% endif %}
+
+
       <div class="course-info">
         <div class="course-title-container">
           <h1>{{ course.title }}</h1>
@@ -23,7 +30,10 @@
             <span class="enrolled-badge">Enrolled</span>
           {% endif %}
         </div>
-        <p>{{ course.description }}</p>
+        <p class="course-description">
+          {{ course.description }}
+        </p>
+        
         <div class="instructor-info">
           <div>
             <h4>{{ course.instructor.username }}</h4>
@@ -37,7 +47,17 @@
           {% endif %}
         </div>        
       </div>
+
+      <!-- Edit Course Button -->
+      {% if request.user == course.instructor %}
+      <div class="course-header-right">
+        <a href="{% url 'edit-course' course.id %}" class="edit-course-btn">
+          <i class="fa-solid fa-pen"></i>&nbsp;Edit Course
+        </a>
+      </div>
+      {% endif %}
     </div>
+    
 
     <!-- Modules Section -->
     <div class="modules-section">
