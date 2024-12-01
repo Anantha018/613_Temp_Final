@@ -10,6 +10,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard_view, name='dashboard'),
     path('create-course/', views.create_course_view, name='create-course'),
     path('courses/', views.courses_view, name='courses'),
+    path('search-courses/', views.search_courses_view, name='search-courses'),
+    
     
     path('course/<int:course_id>/', views.course_detail_view, name='course-detail'),
     

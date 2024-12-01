@@ -10,6 +10,7 @@ from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth.models import User
 from classnest_Base.models import Profile
+from django.db.models import Q
 
 
 # Create groups if they don’t already exist
@@ -75,14 +76,24 @@ def courses_view(request):
     courses = Course.objects.all()
     return render(request, 'classnest_Base/courses.html', {'courses': courses, 'is_instructor': is_instructor})
 
+@login_required
+def search_courses_view(request):
+    query = request.GET.get('q')  # Get the search query from the URL
+    if query:
+        courses = Course.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )  # Search by course title or description
+    else:
+        courses = Course.objects.all()
 
+    return render(request, 'classnest_Base/courses.html', {'courses': courses})
 
 @login_required
 def course_detail_view(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     is_instructor = request.user.groups.filter(name='Instructor').exists()
     modules = Module.objects.filter(course=course)
-    
+
     # Handle enrollment for students
     if request.method == "POST" and 'enroll' in request.POST:
         if not is_instructor:
