@@ -51,8 +51,21 @@ class CourseEditForm(forms.ModelForm):
         # Customize the thumbnail field to remove the "Clear" checkbox
         self.fields['thumbnail'].widget = forms.ClearableFileInput(attrs={'class': 'custom-file-input'})
         self.fields['thumbnail'].widget.can_clear = False  # Disable the "Clear" checkbox
+        
 
-
+class MessageForm(forms.Form):
+    recipient = forms.ModelChoiceField(
+        queryset=User.objects.all(),
+        label="To",
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    subject = forms.CharField(
+        max_length=255,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    body = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control'})
+    )
 
 class DiscussionForm(forms.ModelForm):
     class Meta:

@@ -449,3 +449,34 @@ def edit_course_view(request, course_id):
     else:
         form = CourseEditForm(instance=course)
     return render(request, 'classnest_Base/edit_course.html', {'form': form, 'course': course})
+
+
+@login_required
+def send_message_view(request):
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            recipient = form.cleaned_data['recipient']
+            subject = form.cleaned_data['subject']
+            body = form.cleaned_data['body']
+            Message.objects.create(sender=request.user, receiver=recipient, subject=subject, body=body)
+            messages.success(request, "Message sent successfully!")
+            return redirect('inbox')  # Redirect to inbox after sending
+    else:
+        form = MessageForm()
+
+    return render(request, 'classnest_Base/send_message.html', {'form': form})
+
+
+@login_required
+def inbox_view(request):
+    received_messages = Message.objects.filter(receiver=request.user).order_by('-timestamp')
+    return render(request, 'classnest_Base/inbox.html', {'messages': received_messages})
+
+
+@login_required
+def message_detail_view(request, message_id):
+    message = Message.objects.get(id=message_id, receiver=request.user)
+    message.is_read = True  # Mark the message as read
+    message.save()
+    return render(request, 'classnest_Base/message_detail.html', {'message': message})
