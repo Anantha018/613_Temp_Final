@@ -1,7 +1,73 @@
 /* login.css */
 body {
-    background-color: #f5f5f5;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 80px; /* Adjust this value based on the navbar height */
+  }
+  
+
+/* Navbar */
+.navbar {
+    background-color: #6c63ff;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed; /* Fixes the navbar to the top of the page */
+    top: 0; /* Aligns the navbar to the top */
+    left: 0; /* Ensures the navbar starts from the very left */
+    right: 0; /* Ensures the navbar extends to the very right */
+    z-index: 1000; /* Ensures the navbar stays on top of other content */
+}
+  
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.login-btn-base:hover {
+    border-radius: 4px;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.register-btn-base:hover {
+    border-radius: 4px;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.nav-links a,
+.user-info{
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-button {
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.nav-button:hover {
+  transform: scale(1.1); /* Increase size by 10% */
+  background-color: #5a54e2; /* Consistent hover color */
 }
 
 .login-container {
