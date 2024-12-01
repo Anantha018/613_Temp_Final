@@ -1,0 +1,21 @@
+/* Styling for the message detail container */
+.message-detail-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    word-wrap: break-word; /* Ensures long words wrap properly */
+    overflow-wrap: break-word; /* Compatibility with modern browsers */
+}
+
+/* Styling for message content text */
+.message-content {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+    white-space: pre-wrap; /* Maintains whitespace and wraps text */
+}
