@@ -5,14 +5,14 @@
 {% block content %}
 <div class="login-container">
     <div class="login-header">
-        <h1>ClassNest</h1>
-        <p>Your Nest for Seamless Learning</p>
+        <h1><i class="fa-solid fa-book-open-reader"></i>&nbsp;ClassNest</h1>
+        <p><i class="fa-solid fa-book-atlas"></i>&nbsp;Your Nest for Seamless Learning</p>
     </div>
     <div class="login-card">
         <div class="login-icon">
             <i class="icon-login"></i> <!-- Replace with an icon if necessary -->
         </div>
-        <h2>Welcome back</h2>
+        <h2><i class="fa-solid fa-door-closed"></i>&nbsp;Welcome back</h2>
         <p>Sign in to your account</p>
         <form method="post" class="login-form">
             {% csrf_token %}
@@ -25,7 +25,7 @@
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
             
-            <button type="submit" class="btn sign-in-btn">Sign in</button>
+            <button type="submit" class="btn sign-in-btn"><i class="fa-solid fa-key"></i>&nbsp;Sign in</button>
         </form>
         <div class="login-footer"><br>
             <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>      
