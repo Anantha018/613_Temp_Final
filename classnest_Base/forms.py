@@ -30,6 +30,30 @@ class UserRegistrationForm(UserCreationForm):
         return user
 
 
+class CourseEditForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['title', 'description', 'thumbnail']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['thumbnail'].widget = forms.ClearableFileInput(attrs={'class': 'custom-file-input'})
+        self.fields['thumbnail'].widget.clear_checkbox_label = None  # Hide the clear checkbox
+
+
+class CourseEditForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['title', 'description', 'thumbnail']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Customize the thumbnail field to remove the "Clear" checkbox
+        self.fields['thumbnail'].widget = forms.ClearableFileInput(attrs={'class': 'custom-file-input'})
+        self.fields['thumbnail'].widget.can_clear = False  # Disable the "Clear" checkbox
+
+
+
 class DiscussionForm(forms.ModelForm):
     class Meta:
         model = Discussion

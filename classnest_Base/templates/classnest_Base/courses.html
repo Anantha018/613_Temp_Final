@@ -11,7 +11,11 @@
   <div class="courses-grid">
     {% for course in courses %}
       <div class="course-card">
-        <img src="{{ course.thumbnail.url }}" alt="{{ course.title }} Thumbnail" class="course-thumbnail">
+        {% if course.thumbnail %}
+          <img src="{{ course.thumbnail.url }}" alt="{{ course.title }} Thumbnail" class="course-thumbnail-large">
+        {% else %}
+          <img src="{% static 'classnest_Base/img/default-thumbnail.jpg' %}" alt="Default Thumbnail" class="course-thumbnail-large">
+        {% endif %}
         <div class="course-details">
           <a href="{% url 'course-detail' course.id %}" class="course-link"><h3>{{ course.title }}</h3></a>
           <p class="course-instructor">Instructor: {{ course.instructor.username }}</p>

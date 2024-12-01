@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from classnest_Base.models import Profile
 
+
 # Create groups if they don’t already exist
 def create_user_groups():
     Group.objects.get_or_create(name='Student')
@@ -81,7 +82,7 @@ def course_detail_view(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     is_instructor = request.user.groups.filter(name='Instructor').exists()
     modules = Module.objects.filter(course=course)
-
+    
     # Handle enrollment for students
     if request.method == "POST" and 'enroll' in request.POST:
         if not is_instructor:
@@ -425,3 +426,15 @@ def delete_inbox_view(request, inbox_id):
         return HttpResponseForbidden("You are not allowed to delete this Conversation.")
     
 
+@login_required
+def edit_course_view(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if request.method == "POST":
+        form = CourseEditForm(request.POST, request.FILES, instance=course)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Course updated successfully!")
+            return redirect('course-detail', course_id=course.id)
+    else:
+        form = CourseEditForm(instance=course)
+    return render(request, 'classnest_Base/edit_course.html', {'form': form, 'course': course})

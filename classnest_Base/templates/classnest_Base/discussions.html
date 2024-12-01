@@ -31,7 +31,7 @@
           <a href="{% url 'discussion-detail' discussion_id=discussion.id %}" class="view-btn">View</a>
           <form action="{% url 'delete-discussion' discussion_id=discussion.id %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" class="delete-btn">Delete</button>
+            <button type="submit" class="delete-discussion-btn">Delete</button>
           </form>
         </div>
       </div>
