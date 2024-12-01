@@ -5,6 +5,15 @@
 
 {% block content %}
 
+<!-- Search Bar -->
+<div class="search-bar">
+  <form method="GET" action="{% url 'search-courses' %}">
+    <input type="text" name="q" placeholder="Search for courses..." value="{{ request.GET.q }}">
+    <button type="submit" class="search-btn">
+      <i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+</div>
+
 <!-- Courses Section -->
 <div class="courses-section">
   <h2 class="section-title">Courses</h2>
@@ -19,7 +28,6 @@
         <div class="course-details">
           <a href="{% url 'course-detail' course.id %}" class="course-link"><h3>{{ course.title }}</h3></a>
           <p class="course-instructor">Instructor: {{ course.instructor.username }}</p>
-          
         </div>
       </div>
     {% empty %}
