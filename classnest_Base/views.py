@@ -480,3 +480,11 @@ def message_detail_view(request, message_id):
     message.is_read = True  # Mark the message as read
     message.save()
     return render(request, 'classnest_Base/message_detail.html', {'message': message})
+
+@login_required
+def instructor_detail_view(request, instructor_id):
+    instructor = get_object_or_404(User, id=instructor_id)
+    context = {
+        'instructor': instructor,
+    }
+    return render(request, 'classnest_Base/instructor_detail.html', context)

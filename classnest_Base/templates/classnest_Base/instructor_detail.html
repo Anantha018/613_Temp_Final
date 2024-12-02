@@ -1,0 +1,27 @@
+<!-- classnest_Base/templates/classnest_Base/instructor_detail.html -->
+{% extends "classnest_Base/base_generic.html" %}
+{% block title %}Instructor: {{ instructor.username }}{% endblock %}
+
+{% block content %}
+<div class="instructor-detail-container">
+    <h1><i class="fa-solid fa-user"></i>&nbsp;{{ instructor.username }}</h1>
+    <p><i class="fa-solid fa-envelope"></i>&nbsp;Email: {{ instructor.email }}</p>
+
+    <!-- Display additional instructor details if available -->
+    {% if instructor.profile.github_link %}
+        <p><i class="fa-brands fa-github"></i>&nbsp;GitHub: <a href="{{ instructor.profile.github_link }}" target="_blank">{{ instructor.profile.github_link }}</a></p>
+    {% endif %}
+    {% if instructor.profile.linkedin_link %}
+        <p><i class="fa-brands fa-linkedin"></i>&nbsp;LinkedIn: <a href="{{ instructor.profile.linkedin_link }}" target="_blank">{{ instructor.profile.linkedin_link }}</a></p>
+    {% endif %}
+
+    <h2 class="courses-taught"><i class="fa-solid fa-book-atlas"></i>&nbsp;Courses Taught</h2>
+    <ul>
+        {% for course in instructor.instructed_courses.all %}
+            <li><a href="{% url 'course-detail' course.id %}">{{ course.title }}</a></li>
+        {% empty %}
+            <p>No courses available.</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+/* Instructor Detail Container */
+.instructor-detail-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.instructor-detail-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-bottom: 20px;
+}
+
+.instructor-detail-container p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.instructor-detail-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.instructor-detail-container ul li {
+    margin: 10px;
+}
+
+.instructor-detail-container ul li a {
+    text-decoration: none;
+    color: #009a1c;
+    font-weight: bold;
+}
+
+.instructor-detail-container ul li a:hover {
+    text-decoration: underline;
+}
+
+.courses-taught {
+    color: chocolate;
+}
