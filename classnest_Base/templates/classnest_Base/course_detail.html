@@ -36,8 +36,12 @@
         
         <div class="instructor-info">
           <div>
-            <h4>{{ course.instructor.username }}</h4>
-            <p><i class="fa-solid fa-chalkboard"></i>&nbsp;Instructor</p>
+            <h4>
+              <a href="{% url 'instructor-detail' course.instructor.id %}">
+                {{ course.instructor.username }}
+              </a>
+            </h4>
+            <p><i class="fa-solid fa-chalkboard"></i>&nbsp;Instructor</p>            
           </div>
         </div>
         <div class="course-actions">

@@ -41,6 +41,8 @@ urlpatterns = [
     
     path('course/<int:course_id>/edit/', views.edit_course_view, name='edit-course'),
     
+    path('instructor/<int:instructor_id>/', views.instructor_detail_view, name='instructor-detail'),
+    
     path('profile/', views.profile_view, name='profile'),
     
     path('login/', auth_views.LoginView.as_view(template_name='classnest_Base/login.html'), name='login'),
