@@ -33,12 +33,15 @@
     text-decoration: none;
     color: #009a1c;
     font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .instructor-detail-container ul li a:hover {
     text-decoration: underline;
+    transform: translateY(-2px);
 }
 
 .courses-taught {
     color: chocolate;
+    margin: 25px;
 }

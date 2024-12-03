@@ -1,0 +1,17 @@
+{% extends "classnest_Base/base_generic.html" %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="user-profile-container">
+  <h1><i class="fa-solid fa-user"></i>&nbsp;{{ user_profile.username }}</h1>
+  <p><i class="fa-solid fa-envelope"></i>&nbsp;Email: {{ user_profile.email }}</p>
+
+  <!-- Include any additional fields you want to show -->
+  {% if user_profile.profile.github_link %}
+    <p><i class="fa-brands fa-github"></i>&nbsp;GitHub: <a href="{{ user_profile.profile.github_link }}" target="_blank">{{ user_profile.profile.github_link }}</a></p>
+  {% endif %}
+  {% if user_profile.profile.linkedin_link %}
+    <p><i class="fa-brands fa-linkedin"></i>&nbsp;LinkedIn: <a href="{{ user_profile.profile.linkedin_link }}" target="_blank">{{ user_profile.profile.linkedin_link }}</a></p>
+  {% endif %}
+</div>
+{% endblock %}

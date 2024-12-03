@@ -13,13 +13,10 @@
       <div class="add-content-section">
         {% if request.user == module.course.instructor %}
           <!-- Delete Module Button -->
-          <!-- Delete Module Form -->
           <div class="delete-module-container">
-            <form action="{% url 'delete-module' module.id %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="delete-module-btn">
-                <i class="fa-solid fa-trash-can"></i>&nbsp; Delete Module</button>
-            </form>
+            <button class="delete-module-btn" onclick="showDeleteConfirmation('{% url 'delete-module' module.id %}')">
+                <i class="fa-solid fa-trash-can"></i>&nbsp;Delete Module
+            </button>
           </div>
           {% endif %}
         
@@ -54,8 +51,9 @@
 
     {% endif %}
 
+
     <div class="content-section">
-            <!-- Recordings Section -->
+      <!-- Recordings Section -->
       <h2>Recordings</h2>
       {% if recordings %}
         <ul>
@@ -64,14 +62,13 @@
               <div class="item-title">{{ recording.title }}</div>
               <div class="item-actions">
                 <a href="{{ recording.url }}" target="_blank">
-                  <i class="fa-solid fa-link"></i>&nbsp;</a>
+                  <i class="fa-solid fa-link"></i>&nbsp;
+                </a>
                 {% if request.user == module.course.instructor %}
-                <!-- Delete Recording Form -->
-                  <form action="{% url 'delete-recording' recording.id %}" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="delete-recording-btn">
-                      <i class="fa-solid fa-trash"></i>&nbsp;</button>
-                  </form>
+                  <button class="delete-recording-btn" 
+                          onclick="showDeleteConfirmation('{% url 'delete-recording' recording.id %}')">
+                    <i class="fa-solid fa-trash"></i>&nbsp;
+                  </button>
                 {% endif %}
               </div>
             </li>
@@ -90,15 +87,13 @@
               <div class="item-title">{{ assignment.title }}</div>
               <div class="item-actions">
                 <a href="{{ assignment.file.url }}" download>
-                  <i class="fa-solid fa-download"></i>&nbsp;</a>
+                  <i class="fa-solid fa-download"></i>&nbsp;
+                </a>
                 {% if request.user == module.course.instructor %}
-                  <!-- Assignment Delete Button -->
-                  <!-- Delete Assignment Form -->
-                  <form action="{% url 'delete-assignment' assignment.id %}" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="delete-assignment-btn">
-                      <i class="fa-solid fa-trash"></i>&nbsp;</button>
-                  </form>
+                  <button class="delete-assignment-btn" 
+                          onclick="showDeleteConfirmation('{% url 'delete-assignment' assignment.id %}')">
+                    <i class="fa-solid fa-trash"></i>&nbsp;
+                  </button>
                 {% endif %}
               </div>
             </li>
@@ -117,16 +112,13 @@
               <div class="item-title">{{ material.title }}</div>
               <div class="item-actions">
                 <a href="{{ material.file.url }}" download>
-                  <i class="fa-solid fa-download"></i>&nbsp;</a>
+                  <i class="fa-solid fa-download"></i>&nbsp;
+                </a>
                 {% if request.user == module.course.instructor %}
-                  <!-- Form with Confirmation for Deletion -->
-                  <!-- Delete Material Form -->
-                <form action="{% url 'delete-material' material.id %}" method="post" style="display: inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="delete-material-btn">
-                    <i class="fa-solid fa-trash"></i>&nbsp;</button>
-                </form>
-
+                  <button class="delete-material-btn" 
+                          onclick="showDeleteConfirmation('{% url 'delete-material' material.id %}')">
+                    <i class="fa-solid fa-trash"></i>&nbsp;
+                  </button>
                 {% endif %}
               </div>
             </li>
@@ -135,22 +127,62 @@
       {% else %}
         <p>No materials available.</p>
       {% endif %}
-
     </div>
+
+  </div>
+
   </div>
   
   
-  <!-- Custom Confirmation Modal -->
+    <!-- Confirmation Modal -->
   <div class="modal" id="deleteModal">
     <div class="modal-content">
       <div class="modal-header">Are you sure?</div>
       <p>Do you really want to delete this item? This action cannot be undone.</p>
       <div class="modal-buttons">
-        <button class="confirm-delete" id="confirmDeleteButton">Delete</button>
-        <button class="cancel" onclick="closeModal()">Cancel</button>
+        <form id="deleteForm" action="{% url 'delete-course' course.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="confirm-delete-btn">Delete</button>
+        </form>
+        <button class="cancel-btn" onclick="closeModal()">Cancel</button>        
       </div>
     </div>
   </div>
-  </div>
+
+  
+  <script>
+    function showDeleteConfirmation(deleteUrl) {
+      const modal = document.getElementById('deleteModal');
+      const form = document.getElementById('deleteForm');
+      form.action = deleteUrl; // Set the action URL dynamically
+      modal.style.display = 'flex'; // Show the modal
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById('deleteModal');
+      modal.style.display = 'none'; // Hide the modal
+    }
+    
+    // Close the modal if clicked outside of it
+    window.onclick = function (event) {
+      const modal = document.getElementById('deleteModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+
+    window.onload = function () {
+      const modal = document.getElementById('deleteModal');
+      if (modal) {
+        modal.style.display = 'none'; // Ensure modal is hidden on reload
+      }
+    };
+    
+    function confirmDelete() {
+      const deleteForm = document.getElementById('deleteForm');
+      deleteForm.submit(); // Submit the form to execute the delete action
+    }
+    
+  </script>
   
 {% endblock %}

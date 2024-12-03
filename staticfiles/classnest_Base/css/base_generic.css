@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes full height of the viewport */
+    margin: 0;
+  }
+
+  main {
+    flex: 1; /* Main content takes the available space */
+  }
+
+  .footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+    position: relative; /* Default footer placement */
+    bottom: 0;
+    width: 100%;
+  }
+
+  .footer a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }

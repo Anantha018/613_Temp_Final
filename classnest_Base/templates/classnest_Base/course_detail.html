@@ -26,8 +26,8 @@
                 <button type="submit" name="enroll" class="enroll-btn">Enroll</button>
               </form>
             </div>
-          {% elif not is_instructor and request.user in course.students.all %}
-            <span class="enrolled-badge">Enrolled</span>
+          {% comment %} {% elif not is_instructor and request.user in course.students.all %}
+            <span class="enrolled-badge">Enrolled</span> {% endcomment %}
           {% endif %}
         </div>
         <p class="course-description">
@@ -37,13 +37,25 @@
         <div class="instructor-info">
           <div>
             <h4>
-              <a href="{% url 'instructor-detail' course.instructor.id %}">
-                {{ course.instructor.username }}
-              </a>
-            </h4>
-            <p><i class="fa-solid fa-chalkboard"></i>&nbsp;Instructor</p>            
+              <p><i class="fa-solid fa-chalkboard"></i>&nbsp;Instructor:
+                <a href="{% url 'instructor-detail' course.instructor.id %}">
+                  {{ course.instructor.username }}
+                </a>
+              </p>  
+            </h4>          
           </div>
         </div>
+
+        <!-- Show enrolled students count -->
+        <div class="enrolled-info">
+          <p><i class="fa-solid fa-user-group"></i>
+            Enrolled Students: 
+            <a href="{% url 'enrolled-students' course.id %}">
+              {{ course.students.count }}
+            </a>
+          </p>
+        </div>
+
         <div class="course-actions">
           {% if request.user == course.instructor %}
             <button class="delete-course-btn" onclick="showDeleteConfirmation()">

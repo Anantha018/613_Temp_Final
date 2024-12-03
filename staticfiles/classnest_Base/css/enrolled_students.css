@@ -1,0 +1,58 @@
+/* Enrolled Students Container */
+.enrolled-students-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.enrolled-students-container h1 {
+    font-size: 24px;
+    color: #c06741;
+    margin-bottom: 25px;
+}
+
+.enrolled-students-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.enrolled-students-container ul li {
+    margin: 10px 0;
+    
+}
+
+.enrolled-students-container ul li a {
+    color: #24a8bd;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.enrolled-students-container ul li a:hover {
+    text-decoration: underline;
+    transform: scale(1.1); /* Add a scaling effect */
+}
+
+
+/* User Profile Container */
+.user-profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile-container h1 {
+    font-size: 24px;
+    color: #c06741;
+}
+
+.user-profile-container p {
+    font-size: 16px;
+    margin: 10px 0;
+}
