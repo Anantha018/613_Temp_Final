@@ -488,3 +488,21 @@ def instructor_detail_view(request, instructor_id):
         'instructor': instructor,
     }
     return render(request, 'classnest_Base/instructor_detail.html', context)
+
+@login_required
+def enrolled_students_view(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    students = course.students.all()  # Fetch all enrolled students
+    context = {
+        'course': course,
+        'students': students,
+    }
+    return render(request, 'classnest_Base/enrolled_students.html', context)
+
+@login_required
+def user_profile_view(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    context = {
+        'user_profile': user,
+    }
+    return render(request, 'classnest_Base/user_profile.html', context)
