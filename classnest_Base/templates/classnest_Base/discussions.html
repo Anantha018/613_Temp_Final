@@ -3,11 +3,11 @@
 
 {% block content %}
 <div class="discussions-container">
-  <h1 class="discussion-title">Discussions</h1>
+  <h1 class="discussion-title"><i class="fa-solid fa-comments"></i>&nbsp;Discussions</h1>
     <!-- Dropdown for Filtering -->
   <div class="course-filter-container">
     <form id="filterForm" method="get">
-      <label for="courseFilter">Filter by Course:</label>
+      <label for="courseFilter"><i class="fa-solid fa-filter"></i>&nbsp;Filter by Course:</label>
       <select name="course_id" id="courseFilter" onchange="document.getElementById('filterForm').submit();">
         <option value="">All Courses</option>
         {% for course in courses %}
