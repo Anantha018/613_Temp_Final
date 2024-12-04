@@ -75,4 +75,4 @@ class InboxForm(forms.ModelForm):
 class DiscussionForm(forms.ModelForm):
     class Meta:
         model = Discussion
-        fields = ['course', 'title', 'content']
+        fields = ['title', 'content']  # Exclude 'course' field

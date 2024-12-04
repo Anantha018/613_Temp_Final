@@ -418,8 +418,8 @@ def create_discussion(request, course_id):
         form = DiscussionForm(request.POST)
         if form.is_valid():
             discussion = form.save(commit=False)
-            discussion.course = course
-            discussion.instructor = request.user
+            discussion.course = course  # Assign the course directly
+            discussion.instructor = request.user  # Set the instructor
             discussion.save()
             return redirect(f'/discussions/?course_id={course_id}')
     else:
