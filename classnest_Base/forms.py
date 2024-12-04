@@ -66,13 +66,13 @@ class MessageForm(forms.Form):
     body = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control'})
     )
+        
+class InboxForm(forms.ModelForm):
+    class Meta:
+        model = Inbox
+        fields = ['to', 'subject', 'message']
 
 class DiscussionForm(forms.ModelForm):
     class Meta:
         model = Discussion
         fields = ['course', 'title', 'content']
-
-class InboxForm(forms.ModelForm):
-    class Meta:
-        model = Inbox
-        fields = ['to', 'subject', 'message']

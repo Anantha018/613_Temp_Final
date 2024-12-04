@@ -1,0 +1,60 @@
+.discussion-list-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.discussion-list-container h1 {
+  color: #4f46e5;
+  margin-bottom: 20px;
+}
+
+.discussion-list-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.discussion-list-container ul li {
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-discussion-btn-container {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.create-discussion-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.create-discussion-btn:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+.course-filter-container {
+  margin-bottom: 20px;
+}
+
+.course-filter-container select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.create-discussion-btn {
+  margin-bottom: 20px;
+}

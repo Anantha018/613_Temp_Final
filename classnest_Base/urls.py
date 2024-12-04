@@ -25,10 +25,11 @@ urlpatterns = [
     path('module/<int:module_id>/add-material/', views.add_material_view, name='add-material'),
     
     path('discussions/', views.discussions_view, name='discussions'),
-    path('create-discussion/', views.create_discussion_view, name='create-discussion'),
-    path('discussion/<int:discussion_id>/', views.discussion_detail_view, name='discussion-detail'),
-    path('discussion/delete/<int:discussion_id>/', views.delete_discussion_view, name='delete-discussion'),
-    
+    path('discussions/<int:discussion_id>/', views.discussion_detail, name='discussion-detail'),
+    path('course/<int:course_id>/discussions/', views.discussion_list_view, name='discussion-list'),
+    path('course/<int:course_id>/discussions/create/', views.create_discussion, name='create-discussion'),
+    path('discussions/<int:discussion_id>/delete/', views.delete_discussion, name='delete-discussion'),
+
     path('send-message/', views.send_message_view, name='send-message'),
     path('inbox/', views.inbox_view, name='inbox'),
     path('message/<int:message_id>/', views.message_detail_view, name='message-detail'),

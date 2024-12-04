@@ -1,44 +1,62 @@
 {% extends "classnest_Base/base_generic.html" %}
-{% load static %}
-{% block title %} Discussions{% endblock %}
+{% block title %}Discussions{% endblock %}
 
 {% block content %}
-  
- <!-- Main Content -->
- <main class="container">
-  <div class="discussions-header">
-    <h1>Course Discussions</h1>
-    <a href="{% url 'create-discussion' %}" class="compose-btn"> + New Discussion</a>
+<div class="discussions-container">
+  <h1 class="discussion-title">Discussions</h1>
+    <!-- Dropdown for Filtering -->
+  <div class="course-filter-container">
+    <form id="filterForm" method="get">
+      <label for="courseFilter">Filter by Course:</label>
+      <select name="course_id" id="courseFilter" onchange="document.getElementById('filterForm').submit();">
+        <option value="">All Courses</option>
+        {% for course in courses %}
+          <option value="{{ course.id }}" {% if course.id|stringformat:"s" == selected_course_id %}selected{% endif %}>
+            {{ course.title }}
+          </option>
+        {% endfor %}
+      </select>
+    </form>
   </div>
 
-  <div class="search-bar">
-    <input type="text" placeholder="Search discussions...">
-    <select>
-      <option>All Courses</option>
-      {% for course in courses %}
-        <option value="{{ course }}">{{ course }}</option>
-      {% endfor %}
-    </select>
-  </div>
-
-  {% if discussions %}
-    {% for discussion in discussions %}
-      <div class="discussion-card">
-        <h3>{{ discussion.title }}</h3>
-        <p class="meta">Posted by {{ discussion.instructor.username }} on {{ discussion.created_at|date:"M d, Y" }}</p>
-        <p>{{ discussion.content|truncatechars:150 }}</p>
-        <div class="discussion-actions">
-          <a href="{% url 'discussion-detail' discussion_id=discussion.id %}" class="view-btn">View</a>
-          <form action="{% url 'delete-discussion' discussion_id=discussion.id %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="delete-discussion-btn">Delete</button>
-          </form>
-        </div>
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>No discussions available. Create one now!</p>
+  <!-- Create Discussion Button -->
+  {% if is_instructor and selected_course_id %}
+    <div class="create-discussion-btn-container">
+      <a href="{% url 'create-discussion' selected_course_id %}" class="create-discussion-btn">
+        <i class="fa-solid fa-plus"></i> Create Discussion
+      </a>
+    </div>
+  {% elif is_instructor %}
+    <p class="select-course-message">Select a course to create a discussion.</p>
   {% endif %}
-</main>
 
+  <!-- Discussions Section -->
+  {% if discussions %}
+    <div class="discussion-list">
+      {% for discussion in discussions %}
+        <div class="discussion-card">
+          <h3>{{ discussion.title }}</h3>
+          <p class="meta">Posted by {{ discussion.instructor.username }} on {{ discussion.created_at|date:"M d, Y" }}</p>
+          <p><strong>Course:</strong> {{ discussion.course.title }}</p>
+          <div class="discussion-actions">
+            <form action="{% url 'discussion-detail' discussion.id %}" method="get" style="display:inline;">
+              <button type="submit" class="view-btn">View</button>
+            </form>
+            {% if request.user == discussion.instructor %}
+            <form action="{% url 'delete-discussion' discussion.id %}" method="post" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="delete-discussion-btn">Delete</button>
+            </form>
+            {% endif %}
+          </div>          
+        </div>
+      {% endfor %}
+    </div>
+  
+  {% else %}
+    <p class="no-discussions-message">No discussions available for your selected course.</p>
+  {% endif %}
+
+  
+</div>
 {% endblock %}

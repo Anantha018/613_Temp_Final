@@ -1,0 +1,32 @@
+{% extends "classnest_Base/base_generic.html" %}
+{% block title %}Discussions{% endblock %}
+
+{% block content %}
+<div class="discussions-container">
+  <h1>Discussions for {{ course.title }}</h1>
+
+  {% if discussions %}
+    <ul class="discussion-list">
+      {% for discussion in discussions %}
+        <li>
+          <h3>
+            <a href="{% url 'discussion-detail' discussion.id %}">
+              {{ discussion.title }}
+            </a>
+          </h3>
+          <p>Created by: {{ discussion.instructor.username }}</p>
+          <p>{{ discussion.created_at|date:"F j, Y, g:i a" }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No discussions available yet.</p>
+  {% endif %}
+
+  {% if request.user == course.instructor %}
+    <a href="{% url 'create-discussion' course.id %}" class="btn btn-primary">
+      <i class="fa-solid fa-circle-plus"></i>&nbsp;Create Discussion
+    </a>
+  {% endif %}
+</div>
+{% endblock %}
