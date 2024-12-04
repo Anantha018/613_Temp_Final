@@ -1,43 +1,16 @@
 {% extends "classnest_Base/base_generic.html" %}
-{% load static %}
-
 {% block title %}Create Discussion{% endblock %}
 
 {% block content %}
-
-  <main class="create-course-container">
-    <div class="create-course-card">
-      <h2><i class="icon-course"></i> Create New Discussion</h2>
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-group">
-          <label for="course">Course</label>
-          <select id="course" name="course" required>
-            <option value="" disabled selected>Select a course</option>
-            <option value="ENPM 611">ENPM 611</option>
-            <option value="ENPM 613">ENPM 613</option>
-            <option value="ENPM 703">ENPM 703</option>
-            <option value="ENPM 696">ENPM 696</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" id="title" name="title" required> <!-- Make sure 'name' is 'title' -->
-        </div>
-        <div class="form-group">
-          <label for="content">Content</label>
-          <textarea id="content" name="content" rows="4" required></textarea>
-        </div>
-        <div class="form-buttons">
-          <button type="button" class="cancel-btn">Cancel</button>
-          <button type="submit" class="create-course-btn">Create Discussion</button>
-        </div>
-      </div>
-      </form>
-      
-    </div>
-  </main>
-
-  <script src="{% static 'classnest_Base/js/dashboard_script.js' %}"></script>
-
+<div class="create-discussion-container">
+  <h1>Create Discussion for {{ course.title }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+      <i class="fa-solid fa-circle-plus"></i>&nbsp;Create Discussion
+   </button>
+   <a href="{% url 'discussions' %}" class="btn btn-secondary">Cancel</a>   
+  </form>
+</div>
 {% endblock %}

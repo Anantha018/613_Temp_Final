@@ -1,0 +1,70 @@
+.create-discussion-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-discussion-container h1 {
+    color: #4f46e5;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .create-discussion-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .create-discussion-container form .btn {
+    display: inline-block;
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .create-discussion-container form .btn-primary {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .create-discussion-container form .btn-primary:hover {
+    background-color: #45a049; /* Darker green */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .create-discussion-container form .btn-secondary {
+    background-color: #6c757d; /* Gray */
+    color: white;
+    text-decoration: none;
+  }
+  
+  .create-discussion-container form .btn-secondary:hover {
+    background-color: #5a6268; /* Darker gray */
+  }
+  
+  .create-discussion-container form input,
+  .create-discussion-container form textarea,
+  .create-discussion-container form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .create-discussion-container form label {
+    font-weight: bold;
+    color: #333;
+  }
+  

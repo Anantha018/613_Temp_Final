@@ -1,0 +1,192 @@
+.discussions-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.discussion-title {
+  color: #d48122;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.course-filter-container label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #333;
+}
+
+.course-filter-container select {
+  padding: 10px 25px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+  margin: 30px;
+}
+
+.create-discussion-btn-container {
+  text-align: right;
+  margin: 20px;
+}
+
+.create-discussion-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.create-discussion-btn:hover {
+  background-color: #45a049;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.discussion-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.discussion-card {
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevent overflowing content */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.discussion-card h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: #333;
+  text-overflow: ellipsis; /* Add ellipsis for long text */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden;
+}
+
+.discussion-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+  overflow: hidden; /* Hide overflowing content */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.discussion-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-start; /* Ensures buttons are aligned to the left */
+}
+
+.view-btn, .delete-discussion-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80px; /* Fixed width for all buttons */
+  text-align: center;
+}
+
+.view-btn {
+  background-color: #4f46e5; /* Purple button */
+}
+
+.delete-discussion-btn {
+  background-color: #e3342f; /* Red button */
+}
+
+.view-btn:hover {
+  background-color: #3730a3;
+}
+
+.delete-discussion-btn:hover {
+  background-color: #cc1f1a;
+}
+
+.no-discussions-message {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  margin: 20px;
+}
+
+.select-course-message {
+  color: #666;
+  font-size: 16px;
+  text-align: center;
+  margin: 20px;
+}
+
+.discussion-detail-container p {
+  word-wrap: break-word; /* Allows breaking long words */
+  overflow-wrap: break-word; /* Break long text on word boundaries */
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5; /* Adjust line height for better readability */
+  color: #333;
+}
+
+.discussion-detail-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.discussion-detail-container h1 {
+  color: #c85d26;
+  margin-bottom: 10px;
+}
+
+.discussion-detail-container .meta {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.discussion-detail-container hr {
+  margin: 20px 0;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4f46e5;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin: 20px;
+}
+
+.back-btn:hover {
+  background-color: #3730a3;
+}

@@ -326,56 +326,120 @@ def profile_view(request):
         'linkedin_link': profile.linkedin_link,
     })
 
-
 @login_required
 def discussions_view(request):
-    # Fetch all discussions, ordered by creation date
-    discussions = Discussion.objects.all().order_by('-created_at')
-    
-    # Fetch distinct course titles
-    courses = Course.objects.values_list('title', flat=True).distinct()
+    user = request.user
+    selected_course_id = request.GET.get('course_id', None)
+
+    # Fetch courses the user is enrolled in or instructing
+    courses = Course.objects.filter(models.Q(students=user) | models.Q(instructor=user)).distinct()
+
+    # Filter discussions by the selected course or show all discussions
+    if selected_course_id:
+        discussions = Discussion.objects.filter(course_id=selected_course_id)
+    else:
+        discussions = Discussion.objects.filter(course__in=courses)
 
     # Check if the user is an instructor
-    is_instructor = request.user.groups.filter(name='Instructor').exists()
+    is_instructor = Course.objects.filter(instructor=user).exists()
 
-    # Render the discussions page
-    return render(request, 'classnest_Base/discussions.html', {
-        'discussions': discussions,
+    context = {
         'courses': courses,
+        'discussions': discussions,
+        'selected_course_id': selected_course_id,
         'is_instructor': is_instructor,
+    }
+    return render(request, 'classnest_Base/discussions.html', context)
+
+
+
+@login_required
+def user_discussions(request):
+    user = request.user
+
+    # Get courses the user is enrolled in or instructing
+    enrolled_courses = Course.objects.filter(students=user)
+    instructed_courses = Course.objects.filter(instructor=user)
+
+    # Get discussions for these courses
+    discussions = Discussion.objects.filter(course__in=enrolled_courses | instructed_courses).distinct()
+
+    context = {
+        'discussions': discussions,
+    }
+    return render(request, 'classnest_Base/discussions.html', context)
+
+@login_required
+def discussion_detail(request, discussion_id):
+    discussion = get_object_or_404(Discussion, id=discussion_id)
+
+    # Ensure the user has access to this discussion
+    if not (request.user == discussion.instructor or request.user in discussion.course.students.all()):
+        return HttpResponseForbidden("You do not have permission to view this discussion.")
+
+    return render(request, 'classnest_Base/discussion_detail.html', {'discussion': discussion})
+
+
+@login_required
+def discussion_list(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+
+    # Check if the user is enrolled or is the instructor
+    if request.user != course.instructor and request.user not in course.students.all():
+        return HttpResponseForbidden("You are not authorized to view these discussions.")
+
+    # Fetch all discussions for the course
+    discussions = Discussion.objects.filter(course=course)
+
+    return render(request, 'classnest_Base/discussion_list.html', {
+        'course': course,
+        'discussions': discussions,
     })
 
 @login_required
-def create_discussion_view(request):
-    if request.method == "POST":
+def discussion_list_view(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    
+    # Check if the user is the instructor or an enrolled student
+    if request.user != course.instructor and request.user not in course.students.all():
+        return redirect('dashboard')  # Redirect unauthorized users
+    
+    discussions = course.discussions.all()
+    return render(request, 'classnest_Base/discussions.html', {'course': course, 'discussions': discussions})
+
+@login_required
+def create_discussion(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+
+    if request.user != course.instructor:
+        return HttpResponseForbidden("You are not authorized to create a discussion for this course.")
+
+    if request.method == 'POST':
         form = DiscussionForm(request.POST)
         if form.is_valid():
-            course = form.save(commit=False)
-            course.instructor = request.user
-            course.save()
-            return redirect('discussions')  # Redirect to the dashboard or another page after creating the course
-        else:
-            print("Form errors:", form.errors)
+            discussion = form.save(commit=False)
+            discussion.course = course
+            discussion.instructor = request.user
+            discussion.save()
+            return redirect(f'/discussions/?course_id={course_id}')
     else:
-        form = CourseForm()  # Initialize an empty form for GET requests
+        form = DiscussionForm()
 
-    return render(request, 'classnest_Base/create_discussion.html', {'form': form})
+    return render(request, 'classnest_Base/create_discussion.html', {'form': form, 'course': course})
+
 
 @login_required
-def discussion_detail_view(request, discussion_id):
+def delete_discussion(request, discussion_id):
     discussion = get_object_or_404(Discussion, id=discussion_id)
-    is_instructor = request.user == discussion.instructor
-    return render(request, 'classnest_Base/discussion_detail.html', {
-        'discussion': discussion,
-        'is_instructor': is_instructor
-    })
-    
-@login_required
-def delete_discussion_view(request, discussion_id):
-    # Delete a specific discussion
-    discussion = get_object_or_404(Discussion, id=discussion_id, instructor=request.user)
+
+    if request.user != discussion.instructor:
+        return HttpResponseForbidden("You are not authorized to delete this discussion.")
+
+    course_id = discussion.course.id
     discussion.delete()
-    return redirect('discussions')
+
+    return redirect(f'/discussions/?course_id={course_id}')
+
 
 @login_required
 def inbox_view(request):

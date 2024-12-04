@@ -74,6 +74,14 @@
       {% endif %}
     </div>
     
+    {% comment %} {% if request.user == course.instructor %}
+      <div class="create-discussion-btn-container">
+          <a href="{% url 'create-discussion' course.id %}" class="create-discussion-btn">
+              <i class="fa-solid fa-plus"></i> Create Discussion
+          </a>
+      </div>
+    {% endif %} {% endcomment %}
+
 
     <!-- Modules Section -->
     <div class="modules-section">
