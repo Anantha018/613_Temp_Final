@@ -11,7 +11,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from classnest_Base.models import Profile
 from django.db.models import Q
-
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import login
 
 # Create groups if they don’t already exist
 def create_user_groups():
@@ -39,6 +40,18 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'classnest_Base/register.html', {'form': form})
 
+class CustomLoginView(LoginView):
+    def form_valid(self, form):
+        # Log the user in
+        remember_me = self.request.POST.get('remember_me')  # Check if "Remember Me" is selected
+        if remember_me:
+            # Set session to expire in 2 weeks
+            self.request.session.set_expiry(31536000)  # 1 year
+        else:
+            # Session expires when the browser closes
+            self.request.session.set_expiry(0)
+        return super().form_valid(form)
+    
 @login_required
 def dashboard_view(request):
     # Debugging: Print user and their groups

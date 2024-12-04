@@ -24,9 +24,13 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
-            
+            <div class="input-group remember-me">
+                <label>
+                    <input type="checkbox" name="remember_me"> Remember Me
+                </label>
+            </div>
             <button type="submit" class="btn sign-in-btn"><i class="fa-solid fa-key"></i>&nbsp;Sign in</button>
-        </form>
+        </form>        
         <div class="login-footer"><br>
             <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>      
         </div>

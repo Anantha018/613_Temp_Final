@@ -48,6 +48,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://classnest.up.railway.app'
 ]
 
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 CORS_ALLOWED_ORIGINS = [
     'https://classnest.up.railway.app'
@@ -145,3 +147,7 @@ LOGIN_REDIRECT_URL = 'dashboard'  # Redirect users to the dashboard after login
 LOGOUT_REDIRECT_URL = 'login'  # Redirect users to the login page after logout
 
 
+# Set session to persist indefinitely
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Use database-backed sessions
+SESSION_COOKIE_AGE = 31536000  # 1 year in seconds (Adjust as needed)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Prevent session from expiring when the browser closes

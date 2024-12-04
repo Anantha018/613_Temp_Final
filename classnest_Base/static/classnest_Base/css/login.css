@@ -164,3 +164,41 @@ body {
     margin-right: 10px;
     border-radius: 10px;
 }
+
+.input-group.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between the checkbox and label */
+    margin-top: 10px;
+  }
+  
+.input-group.remember-me label {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center; /* Ensure vertical alignment */
+    gap: 5px; /* Additional spacing for better visibility */
+}
+  
+.input-group.remember-me input[type="checkbox"] {
+    width: 16px; 
+    height: 16px;
+    margin: 0;
+    cursor: pointer;
+}  
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.remember-me label {
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+}
+
+.remember-me input {
+    margin-right: 5px;
+}
