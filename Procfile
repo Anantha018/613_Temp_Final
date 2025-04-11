@@ -1,1 +1,1 @@
-web: gunicorn classnest.wsgi:application --log-file -
+web: gunicorn classnesst.wsgi:application --log-file -
